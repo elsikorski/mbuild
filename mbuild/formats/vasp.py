@@ -25,6 +25,7 @@ def write_poscar(compound, filename, lattice_constant, bravais=[[1,0,0],
     coord: str, default = 'cartesian', other option = 'direct'
         Coordinate style of atom positions
     """
+    print("heck")
     structure = compound.to_parmed()
     atom_names = np.unique([atom.name for atom in structure.atoms])
     count_list = list()
@@ -47,7 +48,7 @@ def write_poscar(compound, filename, lattice_constant, bravais=[[1,0,0],
         count_list.append(atom_count)
         xyz = np.array([[atom.xx, atom.xy, atom.xz] for atom in
             structure.atoms if atom.name == atom_name])
-        xyz = xyz / 10 # unit conversion from angstroms to nm
+        xyz = xyz #/ 10 # unit conversion from angstroms to nm
         xyz_list.append(xyz)
     
     with open(filename, 'w') as data:
